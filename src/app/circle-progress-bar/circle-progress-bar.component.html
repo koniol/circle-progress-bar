@@ -1,0 +1,28 @@
+<svg id="svg"
+     [attr.width]="radius * 2"
+     [attr.height]="radius * 2"
+     version="1.1"
+     [style.strokeWidth]="stroke"
+     xmlns="http://www.w3.org/2000/svg">
+  <circle [attr.r]="normalizedRadius"
+          [style.cx]="radius"
+          [style.cy]="radius"
+          [style.stroke]="circleColor"
+          fill="transparent">
+  </circle>
+  <circle *ngIf="value > 0"
+          id="bar"
+          #progressBar
+          [style.stroke]="progressColor"
+          [style.strokeWidth]="stroke"
+          [@circleProgress]="{value: true, params: {circumference: circumference, duration: duration + 'ms'} }"
+          [attr.r]="normalizedRadius"
+          [style.strokeDashoffset]="circumference"
+          [style.strokeDasharray]="circumference + ' ' + circumference"
+          [style.cx]="radius"
+          [style.cy]="radius"
+          fill="transparent"
+          stroke-linecap="round">
+  </circle>
+</svg>
+<ng-content></ng-content>
